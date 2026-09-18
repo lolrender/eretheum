@@ -1,0 +1,62 @@
+name: Sync local game files
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/sync-games.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout ERETHREUM
+        uses: actions/checkout@v4
+      - name: Clone 3kh0-lite
+        run: git clone --depth 1 https://github.com/3kh0/3kh0-lite.git /tmp/3kh0-lite
+      - name: Copy curated games
+        shell: bash
+        run: |
+          set -euo pipefail
+          declare -A MAP=(
+            [2048]=2048 [achievementunlocked]=achievementunlocked [adrenalinechallenge]=adrenalinechallenge
+            [avalanche]=avalanche [bigredbutton]=bigredbutton [bloxors]=bloxors [btts]=btts
+            [cell-machine]=cell-machine [chrome-dino]=chrome-dino [circlo]=circlo [connect3]=connect3
+            [cookie-clicker]=cookie-clicker [craftmine]=craftmine [ctr]=ctr [ctr-holiday]=ctr-holiday
+            [ctr-tr]=ctr-tr [cubefield]=cubefield [cupcake2048]=cupcake2048 [doge2048]=doge2048
+            [dogeminer]=DogeMiner [doodle-jump]=doodle-jump [doublewires]=doublewires
+            [draw-the-hill]=draw-the-hill [ducklife1]=ducklife1 [ducklife2]=ducklife2 [ducklife3]=ducklife3
+            [elasticman]=elasticman [factoryballs]=factoryballs [flappy-2048]=flappy-2048
+            [flappy-bird]=flappy-bird [flashtetris]=flashtetris [game-inside]=game-inside
+            [geodash]=geodash [gimme-the-airpod]=gimme-the-airpod [glass-city]=glass-city
+            [google-snake]=google-snake [grindcraft]=grindcraft [hackertype]=hackertype [hextris]=hextris
+            [idle-breakout]=idle-breakout [impossiblequiz]=impossiblequiz [interactivebuddy]=interactivebuddy
+            [learntofly]=learntofly [minecraft-classic]=minecraft-classic [minesweeper]=minesweeper
+            [miniputt]=miniputt [papery-planes]=papery-planes [particle-clicker]=particle-clicker
+            [polybranch]=polybranch [push-the-square]=push-the-square [retro-bowl]=retro-bowl
+            [rolly-vortex]=rolly-vortex [sand-game]=sand-game [slope]=slope [solitaire]=solitaire
+            [sort-the-court]=sort-the-court [soundboard]=soundboard [stack]=stack
+            [stack-bump-3d]=stack-bump-3d [swerve]=swerve [tanuki-sunset]=tanuki-sunset
+            [temple-run-2]=temple-run-2 [the-final-earth]=the-final-earth [there-is-no-game]=there-is-no-game
+            [thisistheonlylevel]=thisistheonlylevel [tunnel-rush]=tunnel-rush [wordle]=wordle
+            [worlds-hardest-game]=worlds-hardest-game [worlds-hardest-game-2]=worlds-hardest-game-2
+          )
+          for id in "${!MAP[@]}"; do
+            src="/tmp/3kh0-lite/projects/${MAP[$id]}"
+            test -f "$src/index.html"
+            rm -rf "games/$id"
+            mkdir -p "games/$id"
+            cp -R "$src"/. "games/$id"/
+          done
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add games
+          if git diff --cached --quiet; then
+            echo "No game changes."
+          else
+            git commit -m "Sync local games from 3kh0-lite"
+            git push
+          fi
