@@ -1,44 +1,10 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ERETHREUM — GAME</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ERETHEUM — GAME</title>
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;background:#050505;color:#eee;font-family:Arial,sans-serif;overflow:hidden}
-.shell{position:fixed;inset:0;background:radial-gradient(circle at 50% 40%,#111 0,#050505 45%,#000 100%)}
-.top{position:fixed;z-index:20;top:16px;left:18px;right:18px;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
-.brand{font-size:12px;letter-spacing:5px;color:#ddd;text-decoration:none;pointer-events:auto}
-.controls{display:flex;gap:8px;pointer-events:auto}
-.btn{font-size:11px;letter-spacing:1.5px;text-decoration:none;color:#aaa;background:rgba(10,10,10,.86);border:1px solid #292929;border-radius:999px;padding:9px 13px;backdrop-filter:blur(8px);transition:.2s}
-.btn:hover{color:#fff;border-color:#666;transform:translateY(-1px)}
-.game-frame{position:fixed;inset:54px 18px 18px;border:1px solid #202020;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 20px 70px rgba(0,0,0,.55)}
-iframe{width:100%;height:100%;border:0;display:block;background:#000}
-.loading{position:absolute;inset:0;display:grid;place-items:center;background:#050505;color:#777;font-size:10px;letter-spacing:4px;transition:opacity .25s}
-.loading.hide{opacity:0;pointer-events:none}
-.corner{position:fixed;right:20px;bottom:8px;color:#292929;font-size:9px;letter-spacing:2px;z-index:30}
-@media(max-width:600px){.top{left:10px;right:10px}.game-frame{inset:52px 8px 8px}.brand{letter-spacing:3px}.btn{padding:8px 10px}}
-</style>
-</head>
-<body>
-<div class="shell"></div>
-<div class="top">
-<a class="brand" href="index.html">ERETHREUM</a>
-<div class="controls">
-<a class="btn" href="games.html">GAMES</a>
-<a class="btn" href="index.html">HOME</a>
-</div>
-</div>
-<div class="game-frame">
-<div class="loading" id="loading">INITIALIZING</div>
-<iframe id="game" allow="fullscreen;autoplay;gamepad" allowfullscreen></iframe>
-</div>
-<div class="corner">ERETHREUM / PLAY</div>
-<script src="system/games.js"></script>
-<script>
-const params=new URLSearchParams(location.search),id=params.get("id"),game=games.find(g=>g.id===id),iframe=document.getElementById("game"),loading=document.getElementById("loading");
-if(!game){loading.textContent="GAME NOT FOUND"}else{document.title="ERETHREUM — "+game.title;iframe.src="games/"+game.id+"/index.html";iframe.addEventListener("load",()=>{loading.classList.add("hide");setTimeout(()=>loading.remove(),300)})}
-</script>
-</body>
-</html>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#050505;color:#eee;font-family:Arial,sans-serif;overflow:hidden}.shell{position:fixed;inset:0;background:radial-gradient(circle at 50% 40%,#111 0,#050505 45%,#000 100%)}.top{position:fixed;z-index:20;top:16px;left:18px;right:18px;display:flex;align-items:center;justify-content:space-between}.brand{font-size:12px;letter-spacing:5px;color:#ddd;text-decoration:none}.controls{display:flex;gap:8px;align-items:center}.btn{font-size:10px;letter-spacing:1.5px;text-decoration:none;color:#aaa;background:rgba(10,10,10,.86);border:1px solid #292929;border-radius:999px;padding:9px 13px;backdrop-filter:blur(8px);transition:.2s}.btn:hover{color:#fff;border-color:#666}.btn.action{cursor:pointer}.game-frame{position:fixed;inset:54px 18px 18px;border:1px solid #202020;border-radius:14px;overflow:hidden;background:#000;box-shadow:0 20px 70px rgba(0,0,0,.55)}iframe{width:100%;height:100%;border:0;display:block;background:#000}.loading{position:absolute;inset:0;display:grid;place-items:center;background:#050505;color:#777;font-size:10px;letter-spacing:4px;transition:opacity .25s;z-index:2}.loading.hide{opacity:0;pointer-events:none}.corner{position:fixed;right:20px;bottom:8px;color:#292929;font-size:9px;letter-spacing:2px;z-index:30}@media(max-width:600px){.top{left:10px;right:10px}.game-frame{inset:52px 8px 8px}.brand{letter-spacing:3px}.btn{padding:8px 10px}}
+</style></head><body><div class="shell"></div><div class="top"><a class="brand" href="index.html">ERETHEUM</a><div class="controls"><a class="btn" href="games.html">GAMES</a><button class="btn action" id="reload">RELOAD</button><button class="btn action" id="full">FULLSCREEN</button><a class="btn" href="index.html">HOME</a></div></div><div class="game-frame"><div class="loading" id="loading">INITIALIZING</div><iframe id="game" allow="fullscreen;autoplay;gamepad" allowfullscreen></iframe></div><div class="corner">ERETHEUM / PLAY</div>
+<script src="system/games.js"></script><script>
+const p=new URLSearchParams(location.search),id=p.get("id"),game=games.find(g=>g.id===id),iframe=document.getElementById("game"),loading=document.getElementById("loading"),recentKey="erethreum-recent";
+if(!game)loading.textContent="GAME NOT FOUND";else{document.title="ERETHEUM — "+game.title;iframe.src="games/"+game.id+"/index.html";let r=[];try{r=JSON.parse(localStorage.getItem(recentKey)||"[]")}catch{}r=[game.id,...r.filter(x=>x!==game.id)].slice(0,12);localStorage.setItem(recentKey,JSON.stringify(r));iframe.addEventListener("load",()=>{loading.classList.add("hide");setTimeout(()=>loading.remove(),300)})}
+document.getElementById("reload").onclick=()=>{if(game){loading.classList.remove("hide");loading.textContent="RELOADING";iframe.src="games/"+game.id+"/index.html"}};document.getElementById("full").onclick=()=>{const f=document.querySelector(".game-frame");if(document.fullscreenElement)document.exitFullscreen();else f.requestFullscreen?.()};
+</script></body></html>

@@ -1,19 +1,18 @@
 name: Sync local game files
-
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "17 4 * * *"
   push:
     paths:
       - ".github/workflows/sync-games.yml"
-
 permissions:
   contents: write
-
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout ERETHREUM
+      - name: Checkout ERETHEUM
         uses: actions/checkout@v4
       - name: Clone 3kh0-lite
         run: git clone --depth 1 https://github.com/3kh0/3kh0-lite.git /tmp/3kh0-lite
@@ -54,9 +53,4 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add games
-          if git diff --cached --quiet; then
-            echo "No game changes."
-          else
-            git commit -m "Sync local games from 3kh0-lite"
-            git push
-          fi
+          if git diff --cached --quiet; then echo "No game changes."; else git commit -m "Sync local games from 3kh0-lite"; git push; fi
