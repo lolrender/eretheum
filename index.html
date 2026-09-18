@@ -1,54 +1,19 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ERETHREUM</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ERETHEUM</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#000;color:#fff;overflow-x:hidden;opacity:0;transition:opacity .4s ease}
-body.loaded{opacity:1}
-#stars{position:fixed;inset:0;z-index:0}
-.star{position:absolute;background:#fff;border-radius:50%;opacity:.35;animation:twinkle 4s infinite ease-in-out}
-@keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.5}}
-#boot{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:10;transition:opacity .5s ease}
-.logo{font-size:42px;letter-spacing:14px;text-transform:lowercase}
-.slogan{margin-top:12px;font-size:14px;letter-spacing:3px;color:#aaa}
-.progress{width:180px;height:1px;background:#222;margin-top:25px;overflow:hidden}
-.bar{width:0;height:100%;background:#fff;animation:load 2s linear forwards}
-@keyframes load{to{width:100%}}
-main{display:none;padding:80px 30px;max-width:900px;margin:0 auto;position:relative;z-index:2}
-header{text-align:center;margin-bottom:60px}
-h1{font-size:60px;letter-spacing:14px;font-weight:300;text-transform:lowercase}
-.sub{margin-top:10px;font-size:11px;letter-spacing:3px;color:#888}
-.browse{display:inline-block;margin-top:10px;font-size:12px;color:#aaa;text-decoration:none}.browse:hover{color:#fff}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
-.card{position:relative;display:block;border:1px solid #222;border-radius:10px;overflow:hidden;text-decoration:none;color:#fff;background:#0a0a0a;transition:transform .2s ease,box-shadow .2s ease}
-.card:hover{transform:translateY(-6px) scale(1.03);box-shadow:0 0 25px rgba(255,255,255,.12);border-color:#555}
-.card:hover .thumb{transform:scale(1.08)}
-.thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block;transition:transform .25s ease}
-.info{padding:10px}.title{font-size:13px;letter-spacing:1px}.tag{margin-top:6px;font-size:10px;color:#777}
-.version{position:fixed;bottom:10px;right:14px;font-size:10px;letter-spacing:2px;color:#222}
-</style>
-</head>
-<body>
-<div id="stars"></div>
-<div id="boot"><div class="logo">erethreum</div><div class="slogan"></div><div class="progress"><div class="bar"></div></div></div>
-<main id="main">
-<header><h1>erethreum</h1><div class="sub">games</div><a class="browse" href="games.html">browse games →</a></header>
-<div class="grid" id="grid"></div>
-</main>
-<div class="version">ERETHREUM / 1.0</div>
-<script src="system/games.js"></script>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}body{background:#000;color:#fff;overflow:hidden;opacity:0;transition:opacity .4s ease}body.loaded{opacity:1}
+#stars{position:fixed;inset:0;z-index:0}.star{position:absolute;background:#fff;border-radius:50%;opacity:.35;animation:twinkle 4s infinite ease-in-out}@keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.5}}
+#boot{position:fixed;inset:0;background:#000;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:10;transition:opacity .5s ease}.logo{font-size:42px;letter-spacing:14px;text-transform:lowercase}.slogan{margin-top:12px;font-size:14px;letter-spacing:3px;color:#aaa}.progress{width:180px;height:1px;background:#222;margin-top:25px;overflow:hidden}.bar{width:0;height:100%;background:#fff;animation:load 2s linear forwards}@keyframes load{to{width:100%}}
+main{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:30px;position:relative;z-index:2}.hero{text-align:center}.hero h1{font-size:clamp(48px,9vw,84px);letter-spacing:18px;font-weight:300;text-transform:lowercase}.sub{margin-top:12px;font-size:11px;letter-spacing:5px;color:#666}.browse{display:inline-block;margin-top:24px;padding:10px 16px;border:1px solid #222;border-radius:999px;color:#aaa;text-decoration:none;font-size:11px;letter-spacing:1.5px;transition:.2s}.browse:hover{color:#fff;border-color:#666;transform:translateY(-2px)}.version{position:fixed;bottom:10px;right:14px;font-size:9px;letter-spacing:2px;color:#222}
+</style></head>
+<body><div id="stars"></div><div id="boot"><div class="logo">erethreum</div><div class="slogan"></div><div class="progress"><div class="bar"></div></div></div>
+<main><section class="hero"><h1>erethreum</h1><div class="sub">a small place for games</div><a class="browse" href="games.html">browse games →</a></section></main><div class="version">ERETHEUM / 1.0</div>
 <script>
 window.addEventListener("load",()=>document.body.classList.add("loaded"));
-const messages=["welcome to erethreum.","system online.","erethreum initialized.","games ready."];
-document.querySelector(".slogan").textContent=messages[Math.floor(Math.random()*messages.length)];
-setTimeout(()=>{document.getElementById("boot").style.opacity="0";setTimeout(()=>{document.getElementById("boot").style.display="none";document.getElementById("main").style.display="block"},500)},2000);
-const starContainer=document.getElementById("stars");
-for(let i=0;i<120;i++){const s=document.createElement("div");s.className="star";const size=Math.random()*2;s.style.width=size+"px";s.style.height=size+"px";s.style.top=Math.random()*100+"%";s.style.left=Math.random()*100+"%";s.style.animationDelay=Math.random()*4+"s";starContainer.appendChild(s)}
-const grid=document.getElementById("grid");
-games.forEach(game=>{grid.innerHTML+=`<a class="card" href="play.html?id=${encodeURIComponent(game.id)}"><img class="thumb" src="https://cdn.jsdelivr.net/gh/3kh0/3kh0-lite@main/${game.image}" alt="" loading="lazy"><div class="info"><div class="title">${game.title}</div><div class="tag">${game.tag}</div></div></a>`});
-</script>
-</body>
-</html>
+const messages=["welcome to erethreum.","system online.","erethreum initialized.","games ready."];document.querySelector(".slogan").textContent=messages[Math.floor(Math.random()*messages.length)];
+const stars=document.getElementById("stars");for(let i=0;i<120;i++){const s=document.createElement("div");s.className="star";const z=Math.random()*2;s.style.width=z+"px";s.style.height=z+"px";s.style.top=Math.random()*100+"%";s.style.left=Math.random()*100+"%";s.style.animationDelay=Math.random()*4+"s";stars.appendChild(s)}
+const nav=performance.getEntriesByType("navigation")[0];if(!nav||nav.type==="navigate"){setTimeout(()=>{document.getElementById("boot").style.opacity="0";setTimeout(()=>document.getElementById("boot").remove(),500)},2000)}else document.getElementById("boot").remove();
+</script></body></html>
