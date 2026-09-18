@@ -1,0 +1,56 @@
+<!--
+Game Bootstrapper
+
+@author Kasper Mol <kasper@poki.com>
+@copyright Poki 2017
+-->
+<!doctype HTML>
+<html lang="en">
+<head>
+	<base href="https://cdn.jsdelivr.net/gh/genizy/google-class@357aa250fe666f657c0b1adc1f67f787a02d567a/crossy-road/">
+	<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+	<title>Crossy Road</title>
+
+	<link rel="stylesheet" href="style.css" />
+	<link rel="stylesheet" async href="app-store-interstitial.css" />
+
+	<script src="poki-sdk.js"></script>
+
+	<script src="scripts/extra.min.js"></script>
+</head>
+<body>
+	<div class="worldSwitcher">
+		<button class="worldSwitcher__button" data-world="original" type="button">
+			<img alt="Original" src="worlds/original-s-v2.png" srcset="worlds/original-s-v2.png 1x, worlds/original-s-v2.png 2x" height="88" width="176" decoding="async">
+		</button>
+		<button class="worldSwitcher__button" data-world="space" type="button">
+			<img alt="Space" src="worlds/space-s-v2.png" srcset="worlds/space-s-v2.png 1x, worlds/space-s-v2.png 2x" height="88" width="176" decoding="async">
+		</button>
+		<button class="worldSwitcher__button" data-world="dinosaur" type="button">
+			<img alt="Dinosaur" src="worlds/dinosaur-blue-s-v2.png" srcset="worlds/space-s-v2.png 1x, worlds/space-s-v2.png 2x" height="88" width="176" decoding="async">
+		</button>
+	</div>
+
+	<script src="scripts/bootstrap.min.js"></script>
+
+	<script>
+		window.onload = function () {
+			function switchWorld(type, content){
+				window.postMessage({ type, content: { worldName:content }}, '*');
+			}
+
+			// clicking on worldSwitcher__button will send a message to the iframe to switch the world
+			document.querySelectorAll('.worldSwitcher__button').forEach(function(button) {
+				button.addEventListener('click', function() {
+					var world = button.getAttribute('data-world');
+					if (world) {
+						switchWorld('CrossyMultiverseMessage_switchWorldTo', world);
+					}
+				});
+			});
+		};
+	</script>
+</body>
+</html>

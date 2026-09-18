@@ -1,0 +1,1 @@
+https://api.azgames.io/ajax/gameinfo
