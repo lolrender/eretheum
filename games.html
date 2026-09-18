@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ERETHEUM / games</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#000;color:#fff;font-family:Arial,sans-serif}.wrap{max-width:1180px;margin:auto;padding:18px 20px 50px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}.brand{font-size:12px;letter-spacing:5px;color:#ddd}.back{color:#777;text-decoration:none;font-size:11px}.tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.search,.select{background:#080808;border:1px solid #222;color:#fff;border-radius:999px;padding:11px 14px;outline:none}.search{flex:1;min-width:220px}.select{min-width:130px}.sort{min-width:120px}.command{position:fixed;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(10px);z-index:50;display:none;align-items:flex-start;justify-content:center;padding-top:14vh}.command.open{display:flex}.command-box{width:min(560px,calc(100% - 28px));background:#090909;border:1px solid #292929;border-radius:14px;overflow:hidden;box-shadow:0 30px 100px #000}.command-input{width:100%;background:#050505;border:0;border-bottom:1px solid #222;color:#fff;padding:16px;outline:none;font-size:13px}.command-list{max-height:330px;overflow:auto}.command-item{display:block;padding:13px 16px;color:#aaa;text-decoration:none;font-size:11px;border-bottom:1px solid #111}.command-item:hover{background:#111;color:#fff}.count{color:#555;font-size:10px;letter-spacing:2px;margin:12px 0 16px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:13px}.card{background:#090909;border:1px solid #191919;border-radius:12px;overflow:hidden;position:relative;transition:.2s}.card:hover{transform:translateY(-3px);border-color:#444}.card a{text-decoration:none;color:#fff}.thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}.info{padding:11px 12px}.title{font-size:12px}.tag{font-size:9px;color:#666;margin-top:5px}.save-badge{display:inline-block;margin-top:7px;padding:3px 6px;border:1px solid #333;border-radius:999px;color:#999;font-size:8px;letter-spacing:1px}.fav{position:absolute;right:8px;top:8px;width:28px;height:28px;border-radius:50%;border:1px solid #333;background:#050505;color:#aaa;cursor:pointer}.fav.on{color:#fff;border-color:#777}.empty{color:#444;font-size:11px;letter-spacing:1px;padding:30px 0}.section-title{font-size:10px;letter-spacing:4px;color:#666;margin:8px 0}
+*{box-sizing:border-box}body{margin:0;background:#000;color:#fff;font-family:Arial,sans-serif}.wrap{max-width:1180px;margin:auto;padding:18px 20px 50px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}.brand{font-size:12px;letter-spacing:5px;color:#ddd}.back{color:#777;text-decoration:none;font-size:11px}.tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.search,.select{background:#080808;border:1px solid #222;color:#fff;border-radius:999px;padding:11px 14px;outline:none}.search{flex:1;min-width:220px}.select{min-width:130px}.sort{min-width:120px}.count{color:#555;font-size:10px;letter-spacing:2px;margin:12px 0 16px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:13px}.card{background:#090909;border:1px solid #191919;border-radius:12px;overflow:hidden;position:relative;transition:.2s}.card:hover{transform:translateY(-3px);border-color:#444}.card a{text-decoration:none;color:#fff}.thumb{width:100%;aspect-ratio:16/9;object-fit:cover;display:block}.info{padding:11px 12px}.title{font-size:12px}.tag{font-size:9px;color:#666;margin-top:5px}.save-badge{display:inline-block;margin-top:7px;padding:3px 6px;border:1px solid #333;border-radius:999px;color:#999;font-size:8px;letter-spacing:1px}.fav{position:absolute;right:8px;top:8px;width:28px;height:28px;border-radius:50%;border:1px solid #333;background:#050505;color:#aaa;cursor:pointer}.fav.on{color:#fff;border-color:#777}.empty{color:#444;font-size:11px;letter-spacing:1px;padding:30px 0}.section-title{font-size:10px;letter-spacing:4px;color:#666;margin:8px 0}
 </style>
 </head>
 <body>
@@ -13,13 +13,12 @@
 <div class="top"><a class="back" href="index.html">← home</a><div class="brand">ERETHEUM / GAMES</div></div>
 <div class="tools"><input id="search" class="search" placeholder="search games..." aria-label="Search games"><select id="category" class="select"><option value="">all categories</option></select><select id="sort" class="select sort"><option value="az">A–Z</option><option value="za">Z–A</option><option value="recent">recently played</option><option value="fav">favorites first</option></select><button id="random" class="select">random ↗</button></div>
 <div class="section-title">LIBRARY</div>
-<div class="command" id="command"><div class="command-box"><input class="command-input" id="commandInput" placeholder="type a command or game..." autocomplete="off"><div class="command-list" id="commandList"></div></div></div>
 <div id="count" class="count"></div><div class="grid" id="grid"></div>
 </div>
 <script src="system/games.js"></script>
 <script>
 const favKey="erethreum-favorites",recentKey="erethreum-recent";
-const grid=document.getElementById("grid"),search=document.getElementById("search"),cat=document.getElementById("category"),sort=document.getElementById("sort"),count=document.getElementById("count"),command=document.getElementById("command"),commandInput=document.getElementById("commandInput"),commandList=document.getElementById("commandList");
+const grid=document.getElementById("grid"),search=document.getElementById("search"),cat=document.getElementById("category"),sort=document.getElementById("sort"),count=document.getElementById("count");
 const getFav=()=>{try{return JSON.parse(localStorage.getItem(favKey)||"[]")}catch{return[]}};
 const saveFav=a=>localStorage.setItem(favKey,JSON.stringify(a));
 const recent=()=>{try{return JSON.parse(localStorage.getItem(recentKey)||"[]")}catch{return[]}};
@@ -27,29 +26,19 @@ function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",
 [...new Set(games.map(g=>g.tag))].sort().forEach(x=>cat.insertAdjacentHTML("beforeend","<option>"+esc(x)+"</option>"));
 if(new URLSearchParams(location.search).get("filter")==="favorites"){cat.insertAdjacentHTML("afterbegin",'<option value="__favorites">favorites</option>');cat.value="__favorites"}
 function render(){
- const q=search.value.toLowerCase().trim(),c=cat.value,f=getFav(),r=recent();
- let list=games.filter(g=>(g.title+" "+g.tag).toLowerCase().includes(q));
- if(c==="__favorites")list=list.filter(g=>f.includes(g.id));else if(c)list=list.filter(g=>g.tag===c);
- if(sort.value==="za")list.sort((a,b)=>b.title.localeCompare(a.title));
- else if(sort.value==="recent")list.sort((a,b)=>(r.indexOf(a.id)<0?999:r.indexOf(a.id))-(r.indexOf(b.id)<0?999:r.indexOf(b.id)));
- else if(sort.value==="fav")list.sort((a,b)=>(f.includes(b.id)-f.includes(a.id))||a.title.localeCompare(b.title));
- else list.sort((a,b)=>a.title.localeCompare(b.title));
- count.textContent=list.length+" GAMES";
- grid.innerHTML=list.map(g=>'<div class="card"><a href="play.html?id='+encodeURIComponent(g.id)+'"><img class="thumb" src="https://cdn.jsdelivr.net/gh/3kh0/3kh0-lite@main/'+g.image+'" alt="" loading="lazy"><div class="info"><div class="title">'+esc(g.title)+'</div><div class="tag">'+esc(g.tag)+'</div>'+(g.save?'<div class="save-badge">SAVES</div>':'')+'</div></a><button class="fav '+(f.includes(g.id)?"on":"")+'" data-id="'+esc(g.id)+'">'+(f.includes(g.id)?"★":"☆")+'</button></div>').join("")||'<div class="empty">NO GAMES FOUND.</div>';
- document.querySelectorAll(".fav").forEach(b=>b.onclick=e=>{e.preventDefault();e.stopPropagation();let a=getFav();a=a.includes(b.dataset.id)?a.filter(x=>x!==b.dataset.id):[...a,b.dataset.id];saveFav(a);render()})
+const q=search.value.toLowerCase().trim(),c=cat.value,f=getFav(),r=recent();
+let list=games.filter(g=>(g.title+" "+g.tag).toLowerCase().includes(q));
+if(c==="__favorites")list=list.filter(g=>f.includes(g.id));else if(c)list=list.filter(g=>g.tag===c);
+if(sort.value==="za")list.sort((a,b)=>b.title.localeCompare(a.title));
+else if(sort.value==="recent")list.sort((a,b)=>(r.indexOf(a.id)<0?999:r.indexOf(a.id))-(r.indexOf(b.id)<0?999:r.indexOf(b.id)));
+else if(sort.value==="fav")list.sort((a,b)=>(f.includes(b.id)-f.includes(a.id))||a.title.localeCompare(b.title));
+else list.sort((a,b)=>a.title.localeCompare(b.title));
+count.textContent=list.length+" GAMES";
+grid.innerHTML=list.map(g=>'<div class="card"><a href="play.html?id='+encodeURIComponent(g.id)+'"><img class="thumb" src="https://cdn.jsdelivr.net/gh/3kh0/3kh0-lite@main/'+g.image+'" alt="" loading="lazy"><div class="info"><div class="title">'+esc(g.title)+'</div><div class="tag">'+esc(g.tag)+'</div>'+(g.save?'<div class="save-badge">SAVES</div>':'')+'</div></a><button class="fav '+(f.includes(g.id)?"on":"")+'" data-id="'+esc(g.id)+'">'+(f.includes(g.id)?"★":"☆")+'</button></div>').join("")||'<div class="empty">NO GAMES FOUND.</div>';
+document.querySelectorAll(".fav").forEach(b=>b.onclick=e=>{e.preventDefault();e.stopPropagation();let a=getFav();a=a.includes(b.dataset.id)?a.filter(x=>x!==b.dataset.id):[...a,b.dataset.id];saveFav(a);render()})
 }
-function renderCommands(q=""){
- const f=getFav(),term=q.toLowerCase(),randomGame=games[Math.floor(Math.random()*games.length)];
- let items=[["home","index.html","go home"],["stats","stats.html","open stats"],["random","play.html?id="+encodeURIComponent(randomGame.id),"launch random game"]];
- items=items.concat(games.filter(g=>(g.title+" "+g.tag).toLowerCase().includes(term)).slice(0,10).map(g=>[g.title,"play.html?id="+encodeURIComponent(g.id),g.tag+(f.includes(g.id)?" · favorite":"")]));
- commandList.innerHTML=items.map(x=>'<a class="command-item" href="'+x[1]+'"><b>'+esc(x[0])+'</b> <span>'+esc(x[2])+'</span></a>').join("")
-}
-function openCommand(){command.classList.add("open");commandInput.value="";renderCommands();setTimeout(()=>commandInput.focus(),0)}
 search.addEventListener("input",render);cat.addEventListener("change",render);sort.addEventListener("change",render);
 document.getElementById("random").onclick=()=>{const g=games[Math.floor(Math.random()*games.length)];location.href="play.html?id="+encodeURIComponent(g.id)};
-commandInput.addEventListener("input",()=>renderCommands(commandInput.value));
-command.addEventListener("click",e=>{if(e.target===command)command.classList.remove("open")});
-document.addEventListener("keydown",e=>{if(e.altKey&&e.shiftKey&&e.key.toLowerCase()==="e"){e.preventDefault();openCommand()}if(e.key==="Escape")command.classList.remove("open")});
 render();
 </script>
 </body>
