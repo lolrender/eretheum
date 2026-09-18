@@ -15,5 +15,11 @@ main{min-height:100vh;display:flex;align-items:center;justify-content:center;pad
 window.addEventListener("load",()=>document.body.classList.add("loaded"));
 const messages=["welcome to erethreum.","system online.","erethreum initialized.","games ready."];document.querySelector(".slogan").textContent=messages[Math.floor(Math.random()*messages.length)];
 const stars=document.getElementById("stars");for(let i=0;i<120;i++){const s=document.createElement("div");s.className="star";const z=Math.random()*2;s.style.width=z+"px";s.style.height=z+"px";s.style.top=Math.random()*100+"%";s.style.left=Math.random()*100+"%";s.style.animationDelay=Math.random()*4+"s";stars.appendChild(s)}
-const nav=performance.getEntriesByType("navigation")[0];if(!nav||nav.type==="navigate"){setTimeout(()=>{document.getElementById("boot").style.opacity="0";setTimeout(()=>document.getElementById("boot").remove(),500)},2000)}else document.getElementById("boot").remove();
+const firstVisit=!sessionStorage.getItem("erethreum-visited");
+if(firstVisit){
+  sessionStorage.setItem("erethreum-visited","1");
+  setTimeout(()=>{document.getElementById("boot").style.opacity="0";setTimeout(()=>document.getElementById("boot").remove(),500)},2000);
+}else{
+  document.getElementById("boot").remove();
+}
 </script></body></html>
