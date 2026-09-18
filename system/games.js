@@ -68,4 +68,16 @@ const games = [
   {"title":"Wordle","id":"wordle","tag":"Puzzle","image":"projects/wordle/img/logo_512x512.png","save":true},
   {"title":"World's Hardest Game","id":"worlds-hardest-game","tag":"Arcade","image":"projects/worlds-hardest-game/images/splash.jpg","save":false},
   {"title":"World's Hardest Game 2","id":"worlds-hardest-game-2","tag":"Arcade","image":"projects/worlds-hardest-game-2/the-worlds-hardest-game-2.jpg","save":false}
+  {"title":"Crazy Cattle 3D","id":"crazycattle3d","tag":"Arcade","image":"google/crazycattle3d/CrazyCattle3D.png","save":false},
+  {"title":"Crossy Road","id":"crossy-road","tag":"Arcade","image":"google/crossy-road/sprites/crossy-road-logo.png","save":false},
+  {"title":"Cubes 2048","id":"cubes2048","tag":"Puzzle","image":"","save":false},
+  {"title":"Driven Wild","id":"driven-wild","tag":"Racing","image":"google/driven-wild/assets/DrivenWild.png","save":false},
+  {"title":"Escape Road City 2","id":"escape-road-city-2","tag":"Racing","image":"google/escape-road-city-2/logo.png","save":false},
+  {"title":"Geometry Dash Lite","id":"gdlite","tag":"Arcade","image":"google/gdlite/logo.png","save":false},
+  {"title":"Jetpack Joyride","id":"jetpack-joyride","tag":"Arcade","image":"google/jetpack-joyride/splash.jpg","save":false},
+  {"title":"Retro Bowl College","id":"retrobowlcollege","tag":"Sports","image":"google/retrobowlcollege/html5game/splash.png","save":false},
+  {"title":"shapez.io","id":"shapezio","tag":"Strategy","image":"google/shapezio/v/b07e04e7/res/logo.png","save":false},
+  {"title":"Stickman Hook","id":"stickman-hook","tag":"Platformer","image":"google/stickman-hook/images/04184d3d7203cb3de14a0a404a84bf97-CHAR_Classic_Miniature.png","save":false},
+  {"title":"Temple Run 2","id":"temple-run-2-google","tag":"Arcade","image":"google/temple-run-2/img/cover.png","save":false},
+  {"title":"Waterworks","id":"waterworks","tag":"Puzzle","image":"google/waterworks/waterworks/assets/logos.png","save":false}
 ];
