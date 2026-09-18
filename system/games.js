@@ -80,4 +80,6 @@ const games = [
   {"title":"Stickman Hook","id":"stickman-hook","tag":"Platformer","image":"google/stickman-hook/images/04184d3d7203cb3de14a0a404a84bf97-CHAR_Classic_Miniature.png","save":false},
   {"title":"Temple Run 2","id":"temple-run-2-google","tag":"Arcade","image":"google/temple-run-2/img/cover.png","save":false},
   {"title":"Waterworks","id":"waterworks","tag":"Puzzle","image":"google/waterworks/waterworks/assets/logos.png","save":false}
+  {"title":"A Game About a Black Hole","id":"a-game-black-hole","tag":"Arcade","image":"google/a-game-black-hole/index.png","save":false},
+  {"title":"Color Pencil Run","id":"color-pencil-run","tag":"Arcade","image":"google/color-pencil-run/06495b220214bc20287d6a0045bc7a4d.jfif","save":false},
 ];
