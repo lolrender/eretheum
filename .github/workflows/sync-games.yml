@@ -74,7 +74,7 @@ jobs:
             [retrobowlcollege]=retrobowlcollege
             [shapezio]=shapezio
             [stickman-hook]=stickman-hook
-            [temple-run-2]=temple-run-2
+            [temple-run-2-google]=temple-run-2
             [waterworks]=waterworks
           )
           for id in "${!MAP[@]}"; do
@@ -87,4 +87,4 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add games
-          if git diff --cached --quiet; then echo "No google-class game changes."; else git commit -m "Sync games from google-class"; git push; fi
+          if git diff --cached --quiet; then echo "No game changes."; else git commit -m "Sync games from google-class"; git push; fi
