@@ -55,36 +55,3 @@ jobs:
           git add games
           if git diff --cached --quiet; then echo "No game changes."; else git commit -m "Sync local games from 3kh0-lite"; git push; fi
 
-      - name: Clone google-class
-        run: git clone --depth 1 https://github.com/lolrender/google-class.git /tmp/google-class
-      - name: Copy google-class games
-        shell: bash
-        run: |
-          set -euo pipefail
-          declare -A MAP=(
-            [a-game-black-hole]=a-game-black-hole
-            [color-pencil-run]=color-pencil-run
-            [crazycattle3d]=crazycattle3d
-            [crossy-road]=crossy-road
-            [cubes2048]=cubes2048
-            [driven-wild]=driven-wild
-            [escape-road-city-2]=escape-road-city-2
-            [gdlite]=gdlite
-            [jetpack-joyride]=jetpack-joyride
-            [retrobowlcollege]=retrobowlcollege
-            [shapezio]=shapezio
-            [stickman-hook]=stickman-hook
-            [temple-run-2-google]=temple-run-2
-            [waterworks]=waterworks
-          )
-          for id in "${!MAP[@]}"; do
-            src="/tmp/google-class/${MAP[$id]}"
-            test -f "$src/index.html"
-            rm -rf "games/$id"
-            mkdir -p "games/$id"
-            cp -R "$src"/. "games/$id"/
-          done
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add games
-          if git diff --cached --quiet; then echo "No game changes."; else git commit -m "Sync games from google-class"; git push; fi
