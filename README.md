@@ -1,6 +1,6 @@
-# ERETHREUM
+# ERETHEUM
 
-ERETHREUM is a simple browser game site built around a big collection of games you can play straight from the browser.
+ERETHEUM is a simple browser game site built around a big collection of games you can play straight from the browser.
 
 The site is designed to stay clean and fast instead of being packed with ads and unnecessary stuff. Games are loaded into their own pages, while the main site handles things like browsing, favorites, recently played games, stats, themes, and game search.
 
@@ -21,7 +21,7 @@ The site is designed to stay clean and fast instead of being packed with ads and
 
 ## How it works
 
-ERETHREUM is a static website, so there isn't a server that needs to run the site.
+ERETHEUM is a static website, so there isn't a server that needs to run the site.
 
 Games live in the `games/` folder and each game has its own `index.html`. The game library is defined in `system/games.js`.
 
@@ -29,7 +29,7 @@ Most of the site's settings and player data are stored locally in the browser us
 
 ## Game library
 
-A lot of the games come from [3kh0-lite](https://github.com/3kh0/3kh0-lite). The repository includes a GitHub Action that can sync the selected games into ERETHREUM automatically.
+A lot of the games come from [3kh0-lite](https://github.com/3kh0/3kh0-lite). The repository includes a GitHub Action that can sync the selected games into ERETHEUM automatically.
 
 The game list is intentionally curated rather than copying every game from the source library.
 
@@ -45,7 +45,7 @@ The game list is intentionally curated rather than copying every game from the s
 
 ## Running it
 
-ERETHREUM can be hosted on pretty much any static web host. GitHub Pages works too.
+ERETHEUM can be hosted on pretty much any static web host. GitHub Pages works too.
 
 For local development, just serve the repository with a basic local web server rather than opening the HTML files directly.
 
