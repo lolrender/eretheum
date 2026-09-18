@@ -1,1 +1,180 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Erethereum Game</title><style>html,body{margin:0;height:100%;background:#070707}iframe{width:100%;height:100%;border:0}.bar{position:fixed;z-index:5;top:10px;left:10px;background:#8cff42;color:#071000;padding:8px 12px;font:700 12px system-ui;border-radius:4px;text-decoration:none}</style></head><body><a class="bar" href="../../games.html">← GAMES</a><iframe id="g" allowfullscreen></iframe><script>const m={"2048":"projects/2048/index.html","achievementunlocked":"projects/achievementunlocked/index.html","adrenalinechallenge":"projects/adrenalinechallenge/index.html","avalanche":"projects/avalanche/index.html","bigredbutton":"projects/bigredbutton/index.html","bloxors":"projects/bloxors/index.html","btts":"projects/btts/index.html","cell-machine":"projects/cell-machine/index.html","chrome-dino":"projects/chrome-dino/index.html","circlo":"projects/circlo/index.html","connect3":"projects/connect3/index.html","cookie-clicker":"projects/cookie-clicker/index.html","craftmine":"projects/craftmine/index.html","ctr":"projects/ctr/index.html","ctr-holiday":"projects/ctr-holiday/index.html","ctr-tr":"projects/ctr-tr/index.html","cubefield":"projects/cubefield/index.html","cupcake2048":"projects/cupcake2048/index.html","doge2048":"projects/doge2048/index.html","dogeminer":"projects/DogeMiner/index.html","doodle-jump":"projects/doodle-jump/index.html","doublewires":"projects/doublewires/index.html","draw-the-hill":"projects/draw-the-hill/index.html","ducklife1":"projects/ducklife1/index.html","ducklife2":"projects/ducklife2/index.html","ducklife3":"projects/ducklife3/index.html","elasticman":"projects/elasticman/index.html","factoryballs":"projects/factoryballs/index.html","flappy-2048":"projects/flappy-2048/index.html","flappy-bird":"projects/flappy-bird/index.html","flashtetris":"projects/flashtetris/index.html","game-inside":"projects/game-inside/index.html","geodash":"projects/geodash/index.html","gimme-the-airpod":"projects/gimme-the-airpod/index.html","glass-city":"projects/glass-city/index.html","google-snake":"projects/google-snake/index.html","grindcraft":"projects/grindcraft/index.html","hackertype":"projects/hackertype/index.html","hextris":"projects/hextris/index.html","idle-breakout":"projects/idle-breakout/index.html","impossiblequiz":"projects/impossiblequiz/index.html","interactivebuddy":"projects/interactivebuddy/index.html","learntofly":"projects/learntofly/index.html","minecraft-classic":"projects/minecraft-classic/index.html","minesweeper":"projects/minesweeper/index.html","miniputt":"projects/miniputt/index.html","papery-planes":"projects/papery-planes/index.html","particle-clicker":"projects/particle-clicker/index.html","polybranch":"projects/polybranch/index.html","push-the-square":"projects/push-the-square/index.html","retro-bowl":"projects/retro-bowl/index.html","rolly-vortex":"projects/rolly-vortex/index.html","sand-game":"projects/sand-game/index.html","slope":"projects/slope/index.html","solitaire":"projects/solitaire/index.html","sort-the-court":"projects/sort-the-court/index.html","soundboard":"projects/soundboard/index.html","stack":"projects/stack/index.html","stack-bump-3d":"projects/stack-bump-3d/index.html","swerve":"projects/swerve/index.html","tanuki-sunset":"projects/tanuki-sunset/index.html","temple-run-2":"projects/temple-run-2/index.html","the-final-earth":"projects/the-final-earth/index.html","there-is-no-game":"projects/there-is-no-game/index.html","thisistheonlylevel":"projects/thisistheonlylevel/index.html","tunnel-rush":"projects/tunnel-rush/index.html","wordle":"projects/wordle/index.html","worlds-hardest-game":"projects/worlds-hardest-game/index.html","worlds-hardest-game-2":"projects/worlds-hardest-game-2/index.html"};const slug=location.pathname.split('/').filter(Boolean).slice(-2,-1)[0];const src=m[slug];if(src)document.getElementById('g').src='https://cdn.jsdelivr.net/gh/lolrender/3kh0-lite@main/'+src;else document.title='Game not found';</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geometry Dash | 3kh0</title>
+<style media="screen">
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  font-size: 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  overflow: hidden;
+}
+#wrapper {
+  display: block;
+  width: 100vw;
+  height: 75vw;
+  position: relative;
+}
+#monitors {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+@media (min-aspect-ratio: 480/360) {
+  #wrapper {
+    height: 100vh;
+    width: 133.33333333333334vh;
+  }
+}
+#stage {
+  width: 100%;
+  height: 100%;
+}
+
+#loading-progress {
+  color: #0ff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-size: 16px;
+}
+
+
+.monitor {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  overflow: hidden;
+  padding: 3px;
+  color: white;
+  white-space: pre;
+}
+.monitor-label {
+  margin: 0 5px;
+  font-weight: bold;
+}
+.monitor-value {
+  display: inline-block;
+  vertical-align: top;
+  min-width: 34px;
+  text-align: center;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: text;
+  transform: translateZ(0);
+}
+.default .monitor-value, .slider .monitor-value {
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 0 5px;
+  padding: 1px 3px;
+}
+.large {
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 0.1rem 0.25rem;
+  min-width: 3rem;
+}
+.large .monitor-label {
+  display: none;
+}
+.large .monitor-value {
+  font-size: 1rem;
+  width: 100%;
+}
+.list {
+  padding: 0;
+  overflow: auto;
+  overflow-x: hidden;
+}
+.list .monitor-label {
+  text-align: center;
+  padding: 3px;
+  width: 100%;
+  display: block;
+  margin: 0;
+  box-sizing: border-box;
+  white-space: pre-wrap;
+}
+.list .monitor-value {
+  display: block;
+}
+.row {
+  margin: 2px 5px;
+  transform: translateZ(0);
+  text-align: left;
+  border-radius: 0.25rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  height: 20px;
+  line-height: 20px;
+  padding: 0 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.slider input {
+  display: block;
+  width: 100%;
+  transform: translateZ(0);
+}
+#asking-box {
+  display: none;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(33, 33, 33, 0.7);
+}
+.asking #asking-box {
+  display: block;
+}
+#question {
+  display: block;
+  margin: 0 10px;
+  margin-top: 10px;
+  font-size: 12px;
+  color: white;
+}
+#answer {
+  border: none;
+  background: none;
+  width: 100%;
+  font: inherit;
+  font-size: 16px;
+  color: white;
+  padding: 10px;
+  box-sizing: border-box;
+}
+#answer:focus {
+  outline: none;
+}
+</style>
+</head>
+<body>
+<div id="wrapper">
+<canvas id="stage"></canvas>
+<div id="monitors"></div>
+<div id="asking-box">
+<label id="question" for="answer">Question</label>
+<input type="text" id="answer">
+</div>
+</div>
+
+
+<span id="loading-progress">...</span>
+
+
+<script type="text/javascript" src="./gdash.js"></script>
+</body>
+</html>

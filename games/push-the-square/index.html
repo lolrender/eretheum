@@ -1,1 +1,72 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Erethereum Game</title><style>html,body{margin:0;height:100%;background:#070707}iframe{width:100%;height:100%;border:0}.bar{position:fixed;z-index:5;top:10px;left:10px;background:#8cff42;color:#071000;padding:8px 12px;font:700 12px system-ui;border-radius:4px;text-decoration:none}</style></head><body><a class="bar" href="../../games.html">← GAMES</a><iframe id="g" allowfullscreen></iframe><script>const m={"2048":"projects/2048/index.html","achievementunlocked":"projects/achievementunlocked/index.html","adrenalinechallenge":"projects/adrenalinechallenge/index.html","avalanche":"projects/avalanche/index.html","bigredbutton":"projects/bigredbutton/index.html","bloxors":"projects/bloxors/index.html","btts":"projects/btts/index.html","cell-machine":"projects/cell-machine/index.html","chrome-dino":"projects/chrome-dino/index.html","circlo":"projects/circlo/index.html","connect3":"projects/connect3/index.html","cookie-clicker":"projects/cookie-clicker/index.html","craftmine":"projects/craftmine/index.html","ctr":"projects/ctr/index.html","ctr-holiday":"projects/ctr-holiday/index.html","ctr-tr":"projects/ctr-tr/index.html","cubefield":"projects/cubefield/index.html","cupcake2048":"projects/cupcake2048/index.html","doge2048":"projects/doge2048/index.html","dogeminer":"projects/DogeMiner/index.html","doodle-jump":"projects/doodle-jump/index.html","doublewires":"projects/doublewires/index.html","draw-the-hill":"projects/draw-the-hill/index.html","ducklife1":"projects/ducklife1/index.html","ducklife2":"projects/ducklife2/index.html","ducklife3":"projects/ducklife3/index.html","elasticman":"projects/elasticman/index.html","factoryballs":"projects/factoryballs/index.html","flappy-2048":"projects/flappy-2048/index.html","flappy-bird":"projects/flappy-bird/index.html","flashtetris":"projects/flashtetris/index.html","game-inside":"projects/game-inside/index.html","geodash":"projects/geodash/index.html","gimme-the-airpod":"projects/gimme-the-airpod/index.html","glass-city":"projects/glass-city/index.html","google-snake":"projects/google-snake/index.html","grindcraft":"projects/grindcraft/index.html","hackertype":"projects/hackertype/index.html","hextris":"projects/hextris/index.html","idle-breakout":"projects/idle-breakout/index.html","impossiblequiz":"projects/impossiblequiz/index.html","interactivebuddy":"projects/interactivebuddy/index.html","learntofly":"projects/learntofly/index.html","minecraft-classic":"projects/minecraft-classic/index.html","minesweeper":"projects/minesweeper/index.html","miniputt":"projects/miniputt/index.html","papery-planes":"projects/papery-planes/index.html","particle-clicker":"projects/particle-clicker/index.html","polybranch":"projects/polybranch/index.html","push-the-square":"projects/push-the-square/index.html","retro-bowl":"projects/retro-bowl/index.html","rolly-vortex":"projects/rolly-vortex/index.html","sand-game":"projects/sand-game/index.html","slope":"projects/slope/index.html","solitaire":"projects/solitaire/index.html","sort-the-court":"projects/sort-the-court/index.html","soundboard":"projects/soundboard/index.html","stack":"projects/stack/index.html","stack-bump-3d":"projects/stack-bump-3d/index.html","swerve":"projects/swerve/index.html","tanuki-sunset":"projects/tanuki-sunset/index.html","temple-run-2":"projects/temple-run-2/index.html","the-final-earth":"projects/the-final-earth/index.html","there-is-no-game":"projects/there-is-no-game/index.html","thisistheonlylevel":"projects/thisistheonlylevel/index.html","tunnel-rush":"projects/tunnel-rush/index.html","wordle":"projects/wordle/index.html","worlds-hardest-game":"projects/worlds-hardest-game/index.html","worlds-hardest-game-2":"projects/worlds-hardest-game-2/index.html"};const slug=location.pathname.split('/').filter(Boolean).slice(-2,-1)[0];const src=m[slug];if(src)document.getElementById('g').src='https://cdn.jsdelivr.net/gh/lolrender/3kh0-lite@main/'+src;else document.title='Game not found';</script></body></html>
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <script src="/js/main.js"></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Push the square | 3kh0</title>
+    <link rel="shortcut icon" href="img/icon.png" />
+    <link rel="icon" type="image/x-icon" href="img/icon.png" />
+    <link rel="stylesheet" href="TemplateData/style.css" />
+  </head>
+  <body>
+    <div id="unity-container" class="unity-desktop">
+      <canvas id="unity-canvas"></canvas>
+      <div id="unity-loading-bar">
+        <div id="unity-progress-bar-empty">
+          <div id="unity-progress-bar-full"></div>
+        </div>
+      </div>
+      <div id="unity-footer">
+        <div id="unity-fullscreen-button"></div>
+        <div id="unity-build-title">Push the square</div>
+      </div>
+    </div>
+    <script>
+      var buildUrl = "Build";
+      var loaderUrl = buildUrl + "/NewWebGL.loader.js";
+      var config = {
+        dataUrl: buildUrl + "/NewWebGL.data",
+        frameworkUrl: buildUrl + "/NewWebGL.framework.js",
+        codeUrl: buildUrl + "/NewWebGL.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "DefaultCompany",
+        productName: "Push the square",
+        productVersion: "1.0",
+      };
+
+      var container = document.querySelector("#unity-container");
+      var canvas = document.querySelector("#unity-canvas");
+      var loadingBar = document.querySelector("#unity-loading-bar");
+      var progressBarFull = document.querySelector("#unity-progress-bar-full");
+      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
+
+      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        container.className = "unity-mobile";
+        config.devicePixelRatio = 1;
+      } else {
+        canvas.style.width = "852px";
+        canvas.style.height = "480px";
+      }
+      loadingBar.style.display = "block";
+
+      var script = document.createElement("script");
+      script.src = loaderUrl;
+      script.onload = () => {
+        createUnityInstance(canvas, config, (progress) => {
+          progressBarFull.style.width = 100 * progress + "%";
+        })
+          .then((unityInstance) => {
+            loadingBar.style.display = "none";
+            fullscreenButton.onclick = () => {
+              unityInstance.SetFullscreen(1);
+            };
+          })
+          .catch((message) => {
+            alert(message);
+          });
+      };
+      document.body.appendChild(script);
+    </script>
+  </body>
+</html>

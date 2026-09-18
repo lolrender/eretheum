@@ -1,1 +1,77 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Erethereum Game</title><style>html,body{margin:0;height:100%;background:#070707}iframe{width:100%;height:100%;border:0}.bar{position:fixed;z-index:5;top:10px;left:10px;background:#8cff42;color:#071000;padding:8px 12px;font:700 12px system-ui;border-radius:4px;text-decoration:none}</style></head><body><a class="bar" href="../../games.html">← GAMES</a><iframe id="g" allowfullscreen></iframe><script>const m={"2048":"projects/2048/index.html","achievementunlocked":"projects/achievementunlocked/index.html","adrenalinechallenge":"projects/adrenalinechallenge/index.html","avalanche":"projects/avalanche/index.html","bigredbutton":"projects/bigredbutton/index.html","bloxors":"projects/bloxors/index.html","btts":"projects/btts/index.html","cell-machine":"projects/cell-machine/index.html","chrome-dino":"projects/chrome-dino/index.html","circlo":"projects/circlo/index.html","connect3":"projects/connect3/index.html","cookie-clicker":"projects/cookie-clicker/index.html","craftmine":"projects/craftmine/index.html","ctr":"projects/ctr/index.html","ctr-holiday":"projects/ctr-holiday/index.html","ctr-tr":"projects/ctr-tr/index.html","cubefield":"projects/cubefield/index.html","cupcake2048":"projects/cupcake2048/index.html","doge2048":"projects/doge2048/index.html","dogeminer":"projects/DogeMiner/index.html","doodle-jump":"projects/doodle-jump/index.html","doublewires":"projects/doublewires/index.html","draw-the-hill":"projects/draw-the-hill/index.html","ducklife1":"projects/ducklife1/index.html","ducklife2":"projects/ducklife2/index.html","ducklife3":"projects/ducklife3/index.html","elasticman":"projects/elasticman/index.html","factoryballs":"projects/factoryballs/index.html","flappy-2048":"projects/flappy-2048/index.html","flappy-bird":"projects/flappy-bird/index.html","flashtetris":"projects/flashtetris/index.html","game-inside":"projects/game-inside/index.html","geodash":"projects/geodash/index.html","gimme-the-airpod":"projects/gimme-the-airpod/index.html","glass-city":"projects/glass-city/index.html","google-snake":"projects/google-snake/index.html","grindcraft":"projects/grindcraft/index.html","hackertype":"projects/hackertype/index.html","hextris":"projects/hextris/index.html","idle-breakout":"projects/idle-breakout/index.html","impossiblequiz":"projects/impossiblequiz/index.html","interactivebuddy":"projects/interactivebuddy/index.html","learntofly":"projects/learntofly/index.html","minecraft-classic":"projects/minecraft-classic/index.html","minesweeper":"projects/minesweeper/index.html","miniputt":"projects/miniputt/index.html","papery-planes":"projects/papery-planes/index.html","particle-clicker":"projects/particle-clicker/index.html","polybranch":"projects/polybranch/index.html","push-the-square":"projects/push-the-square/index.html","retro-bowl":"projects/retro-bowl/index.html","rolly-vortex":"projects/rolly-vortex/index.html","sand-game":"projects/sand-game/index.html","slope":"projects/slope/index.html","solitaire":"projects/solitaire/index.html","sort-the-court":"projects/sort-the-court/index.html","soundboard":"projects/soundboard/index.html","stack":"projects/stack/index.html","stack-bump-3d":"projects/stack-bump-3d/index.html","swerve":"projects/swerve/index.html","tanuki-sunset":"projects/tanuki-sunset/index.html","temple-run-2":"projects/temple-run-2/index.html","the-final-earth":"projects/the-final-earth/index.html","there-is-no-game":"projects/there-is-no-game/index.html","thisistheonlylevel":"projects/thisistheonlylevel/index.html","tunnel-rush":"projects/tunnel-rush/index.html","wordle":"projects/wordle/index.html","worlds-hardest-game":"projects/worlds-hardest-game/index.html","worlds-hardest-game-2":"projects/worlds-hardest-game-2/index.html"};const slug=location.pathname.split('/').filter(Boolean).slice(-2,-1)[0];const src=m[slug];if(src)document.getElementById('g').src='https://cdn.jsdelivr.net/gh/lolrender/3kh0-lite@main/'+src;else document.title='Game not found';</script></body></html>
+<!DOCTYPE html>
+<html>
+<head><script src="/js/main.js"></script>
+<meta charset="UTF-8">
+<title>Factory Balls forever | 3kh0</title>
+<link
+      rel="icon"
+      type="image/png"
+      href="https://raw.githubusercontent.com/Piplup7575/factoryballz/main/images/favicon.ico"
+      sizes="16x16"
+    />
+<style>
+  #animation_container, #_preload_div_ {
+	position:absolute;
+	margin:auto;
+	left:0;right:0;
+  }
+</style>
+<script src="libs/1.0.0/createjs.min.js"></script>
+<script src="factoryballsforever.js"></script>
+<script>
+var canvas, stage, exportRoot, anim_container, dom_overlay_container, fnStartAnimation;
+function init() {
+	canvas = document.getElementById("canvas");
+	anim_container = document.getElementById("animation_container");
+	dom_overlay_container = document.getElementById("dom_overlay_container");
+	var comp=AdobeAn.getComposition("FD3559EF710E8E4AABB26802F91D9290");
+	var lib=comp.getLibrary();
+	var loader = new createjs.LoadQueue(false);
+	loader.installPlugin(createjs.Sound);
+	loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
+	loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
+	var lib=comp.getLibrary();
+	loader.loadManifest(lib.properties.manifest);
+}
+function handleFileLoad(evt, comp) {
+	var images=comp.getImages();	
+	if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }	
+}
+function handleComplete(evt,comp) {
+	//This function is always called, irrespective of the content. You can use the variable "stage" after it is created in token create_stage.
+	var lib=comp.getLibrary();
+	var ss=comp.getSpriteSheet();
+	var queue = evt.target;
+	var ssMetadata = lib.ssMetadata;
+	for(i=0; i<ssMetadata.length; i++) {
+		ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+	}
+	var preloaderDiv = document.getElementById("_preload_div_");
+	preloaderDiv.style.display = 'none';
+	canvas.style.display = 'block';
+	exportRoot = new lib.factoryballsforever();
+	stage = new lib.Stage(canvas);	
+	//Registers the "tick" event listener.
+	fnStartAnimation = function() {
+		stage.addChild(exportRoot);
+		createjs.Ticker.framerate = lib.properties.fps;
+		createjs.Ticker.addEventListener("tick", stage);
+	}	    
+	//Code to support hidpi screens and responsive scaling.
+	AdobeAn.makeResponsive(false,'both',false,1,[canvas,preloaderDiv,anim_container,dom_overlay_container]);	
+	AdobeAn.compositionLoaded(lib.properties.id);
+	fnStartAnimation();
+}
+function playSound(id, loop) {
+	return createjs.Sound.play(id, {'interrupt':createjs.Sound.INTERRUPT_EARLY, 'loop': loop});}
+</script>
+</head>
+<body onload="init();" style="margin:0px;">
+	<div id="animation_container" style="background-color:rgba(255, 255, 255, 1.00); width:960px; height:720px">
+		<canvas id="canvas" width="960" height="720" style="position: absolute; display: none; background-color:rgba(255, 255, 255, 1.00);"></canvas>
+		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:960px; height:720px; position: absolute; left: 0px; top: 0px; display: none;">
+		</div>
+	</div>
+    <div id='_preload_div_' style='position:absolute; top:0; left:0; display: inline-block; height:720px; width: 960px; text-align: center;'>	<span style='display: inline-block; height: 100%; vertical-align: middle;'></span>	<img src="https://raw.githubusercontent.com/Piplup7575/factoryballz/b756c41c487dc6daa7b46cf4464e2c9c7e64b4d9/images/preloader.gif" style='vertical-align: middle; max-height: 100%'/></div>
+</body>
+</html>

@@ -1,1 +1,193 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Erethereum Game</title><style>html,body{margin:0;height:100%;background:#070707}iframe{width:100%;height:100%;border:0}.bar{position:fixed;z-index:5;top:10px;left:10px;background:#8cff42;color:#071000;padding:8px 12px;font:700 12px system-ui;border-radius:4px;text-decoration:none}</style></head><body><a class="bar" href="../../games.html">← GAMES</a><iframe id="g" allowfullscreen></iframe><script>const m={"2048":"projects/2048/index.html","achievementunlocked":"projects/achievementunlocked/index.html","adrenalinechallenge":"projects/adrenalinechallenge/index.html","avalanche":"projects/avalanche/index.html","bigredbutton":"projects/bigredbutton/index.html","bloxors":"projects/bloxors/index.html","btts":"projects/btts/index.html","cell-machine":"projects/cell-machine/index.html","chrome-dino":"projects/chrome-dino/index.html","circlo":"projects/circlo/index.html","connect3":"projects/connect3/index.html","cookie-clicker":"projects/cookie-clicker/index.html","craftmine":"projects/craftmine/index.html","ctr":"projects/ctr/index.html","ctr-holiday":"projects/ctr-holiday/index.html","ctr-tr":"projects/ctr-tr/index.html","cubefield":"projects/cubefield/index.html","cupcake2048":"projects/cupcake2048/index.html","doge2048":"projects/doge2048/index.html","dogeminer":"projects/DogeMiner/index.html","doodle-jump":"projects/doodle-jump/index.html","doublewires":"projects/doublewires/index.html","draw-the-hill":"projects/draw-the-hill/index.html","ducklife1":"projects/ducklife1/index.html","ducklife2":"projects/ducklife2/index.html","ducklife3":"projects/ducklife3/index.html","elasticman":"projects/elasticman/index.html","factoryballs":"projects/factoryballs/index.html","flappy-2048":"projects/flappy-2048/index.html","flappy-bird":"projects/flappy-bird/index.html","flashtetris":"projects/flashtetris/index.html","game-inside":"projects/game-inside/index.html","geodash":"projects/geodash/index.html","gimme-the-airpod":"projects/gimme-the-airpod/index.html","glass-city":"projects/glass-city/index.html","google-snake":"projects/google-snake/index.html","grindcraft":"projects/grindcraft/index.html","hackertype":"projects/hackertype/index.html","hextris":"projects/hextris/index.html","idle-breakout":"projects/idle-breakout/index.html","impossiblequiz":"projects/impossiblequiz/index.html","interactivebuddy":"projects/interactivebuddy/index.html","learntofly":"projects/learntofly/index.html","minecraft-classic":"projects/minecraft-classic/index.html","minesweeper":"projects/minesweeper/index.html","miniputt":"projects/miniputt/index.html","papery-planes":"projects/papery-planes/index.html","particle-clicker":"projects/particle-clicker/index.html","polybranch":"projects/polybranch/index.html","push-the-square":"projects/push-the-square/index.html","retro-bowl":"projects/retro-bowl/index.html","rolly-vortex":"projects/rolly-vortex/index.html","sand-game":"projects/sand-game/index.html","slope":"projects/slope/index.html","solitaire":"projects/solitaire/index.html","sort-the-court":"projects/sort-the-court/index.html","soundboard":"projects/soundboard/index.html","stack":"projects/stack/index.html","stack-bump-3d":"projects/stack-bump-3d/index.html","swerve":"projects/swerve/index.html","tanuki-sunset":"projects/tanuki-sunset/index.html","temple-run-2":"projects/temple-run-2/index.html","the-final-earth":"projects/the-final-earth/index.html","there-is-no-game":"projects/there-is-no-game/index.html","thisistheonlylevel":"projects/thisistheonlylevel/index.html","tunnel-rush":"projects/tunnel-rush/index.html","wordle":"projects/wordle/index.html","worlds-hardest-game":"projects/worlds-hardest-game/index.html","worlds-hardest-game-2":"projects/worlds-hardest-game-2/index.html"};const slug=location.pathname.split('/').filter(Boolean).slice(-2,-1)[0];const src=m[slug];if(src)document.getElementById('g').src='https://cdn.jsdelivr.net/gh/lolrender/3kh0-lite@main/'+src;else document.title='Game not found';</script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Cut the Rope | 3kh0</title>
+    <meta name="description" content="Play Cut the Rope! A mysterious package has arrived, and the little monster inside has only one request… CANDY!">
+    <meta name="msapplication-tooltip" content="Play Cut the Rope! A mysterious package has arrived, and the little monster inside has only one request… CANDY!" />
+    <meta name="msapplication-navbutton-color" content="#659729" />
+    <meta name="msApplication-ID" content="App"/>
+    <meta name="msApplication-PackageFamilyName" content="ZeptoLabUKLimited.CutTheRope_sq9zxnwrk84pj"/>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <meta property="og:title" content="Cut the Rope" />
+    <meta property="og:type" content="game" />
+    <meta property="og:site_name" content="Cut the Rope" />
+	<script type="text/javascript" src="scripts/detectmobilebrowser.js" ></script>
+    <link href="css/ctr.css" rel="stylesheet" type="text/css">
+    <script src="scripts/sm2.js" type="text/javascript"></script>
+    <script src="/js/main.js"></script>
+    <script src="scripts/libraries.js" type="text/javascript"></script>
+    <script src="scripts/ctr.js" type="text/javascript"></script>
+    <noscript>
+        <link href="css/nojavascript.css" rel="stylesheet" type="text/css">
+    </noscript>
+</head>
+<body class="ctrCursor">
+  <div id="lang">
+    <style  type="text/css">
+        .hideBeforeLoad, #loaderWindow, #popupWindow { display: none; }  
+    </style>
+
+    <div id="gameContainer" >
+        <div id="game-border">
+            <div id="loader-logo"></div>
+        </div>
+        <div id="gameArea" class="hideBeforeLoad">
+            <canvas id="c"></canvas>
+            <div id="loadingPanel" class="panel"></div>
+
+            <div id="startBackground" class="panel"></div>
+            <div id="menuBackground" class="panel"></div>
+            <div id="levelBackground" class="panel">
+                <canvas id="levelCanvas"></canvas>
+                <div id="levelTape" class="levelTape"></div>
+            </div>
+            <div id="shadowPanel" class="panel">
+                <canvas id="shadowCanvas"></canvas>
+            </div>
+            <div id="menuPanel" class="panel seethrough">
+                <div class="panelContent">
+                    <div id="menuLogo" ></div>
+                    <div id="menuBtnVbox" class="fBtnVBox">
+                        <div id="playBtn" class="fBtn"><img src="" /></div>
+                        <div id="optionsBtn" class="fBtn"><img src="" /></div>
+                    </div>
+                </div>
+                <div id="miniOptionsMenu">
+                    <div id="optionSound" class="ctrPointer" ></div>
+                    <div id="optionMsg"></div>
+                </div>
+            </div>
+
+            <div id="boxPanel" class="panel seethrough">
+                
+                <canvas id="boxCanvas"></canvas>
+
+                <div id="boxScore" class="hideFromMouse"><img src="" /></div>
+
+                <div id="boxNavBack">
+                    <div class="boxNavDisabled">
+                    </div>
+                </div>
+                <div id="boxNavForward">
+                    <div>
+                    </div>
+                </div>
+                <div id="boxBack" class="bBtn">
+                </div>
+            </div>
+            <div id="levelPanel" class="panel">
+                <div id="levelScore">
+                    <img src="" /></div>
+                <div id="levelBack" class="bBtn">
+                </div>
+                <div id="levelOptions"></div>
+                <div id="levelResults">
+                    <div id="resultStatus"><img src="" /></div>
+                    <div class="starCase">
+                        <div id="resultStar1" class=""></div>
+                        <div id="resultStar2" class=""></div>
+                        <div id="resultStar3" class=""></div>
+                    </div>
+                    <div id="resultTicker">
+                        <img id="resultTickerLabel" />
+                        <img id="resultTickerValue" />
+                        <img id="resultTickerMessage" />
+                    </div>
+                    <div class="line"></div>
+                    <div id="resultScore"></div>
+                    <div class="btnCase">
+                        <div id="replayBtn" class="sBtn"><img src="" /></div>
+                        <div id="lrMenuBtn" class="sBtn"><img src="" /></div>
+                        <div id="nextBtn" class="sBtn"><img src="" /></div>
+                    </div>
+                    <div id="resultImproved"></div>
+                </div>
+            </div>
+
+            <div id="gameCompletePanel" class="panel">
+                <div id="congrats"></div>
+                <div id="finalScore"><img src="" /></div>
+                <a href="../../" id="finalFunBtn" class="lBtn" target="_blank"><img src="" /><div id="funOmNom"></div></a>
+                <div id="gameCompleteBack" class="bBtn"></div>
+            </div>
+            
+            <div id="optionsPanel" class="panel">
+                <div class="fBtnVBox">
+                    <div id="optionsTitle"><img src="" /></div>
+                    <div id="soundBtn" class="mini-button ctrCursor"><div id="options-speaker"></div><div class="options-x"></div></div>
+                    <div id="musicBtn" class="mini-button ctrCursor"><div id="options-note"></div><div class="options-x"></div></div>
+                    <div id="langBtn" class="fBtn"><img src="" /><div id="flag"></div></div>
+                    <div id="resetBtn" class="fBtn"><img src="" /></div>
+                    <div id="creditsBtn" class="fBtn"><img src="" /></div>
+                    <div id="dragBtn"><img id="dragText" /><div class="options-check-disabled"></div></div>
+                    <div id="cutBtn" class="ctrCursor"><img id="cutText" /><div class="options-check"></div></div>
+                </div>
+                <div id="optionsBack" class="bBtn"></div>
+            </div>
+
+            <div id="d" class="panel ctrPointer">
+                <img id="dmsg" />
+                <div id="dframe">
+                    <div id="dpic"></div>
+                </div>
+                <div id="dshareBtn" class="fBtn"><img src="" /><div id="dfb"></div></div>
+            </div>
+            <div id="gameBtnTray">
+                <div id="gameMsg" class="allSound"></div>
+                <div id="gameSound" class="ctrPointer allSound"></div>
+                <div id="gameRestartBtn" class="ctrPointer"></div>
+                <div id="gameMenuBtn" class="ctrPointer"></div>
+            </div>
+            <div id="levelMenu">
+                <div class="fBtnVBox">
+                    <div id="continueBtn" class="fBtn"><img src="" /></div>
+                    <div id="skipBtn" class="fBtn"><img src="" /></div>
+                    <div id="selectBtn" class="fBtn"><img src="" /></div>
+                    <div id="menuBtn" class="fBtn"><img src="" /></div>
+                </div>
+            </div>
+
+            <div id="boxCutter">
+            </div>
+            <div id="tapeRoll">
+            </div>
+            <div id="video"></div>
+            <div id="fadeToBlack" class="panel"></div>
+        </div>  
+        <canvas id="e"></canvas>
+        
+        <div id="loaderWindow">
+            <div id="loaderBubbles">
+                <img id="loaderLogo" src="images/page/loader-logo.png" />
+                <div id="loaderCanvasHost">
+                    <canvas id="loaderCanvas"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div id="popupWindow">
+            <div class="popupOuterFrame">
+                <div class="popupInnerFrame" id="slowComputer">
+                    <div class="fBtn" id="slowComputerBtn"><img src="" /></div>
+                </div>
+                <div class="popupInnerFrame" id="resetGame">
+                    <div id="resetText"></div>
+                    <div class="mBtn" id="resetYesBtn"><img src="" /></div>
+                    <div class="mBtn" id="resetNoBtn"><img src="" /></div>
+                    <div id="resetHoldYes"></div>
+                </div>
+                <div class="popupInnerFrame" id="missingStars">
+                    <div id="missingLine1"></div>
+                    <div id="missingCount"><div id="missingStar"></div></div>
+                    <div id="missingLine2"></div>
+                    <div id="missingLine3"></div>
+                    <div class="mBtn" id="missingOkBtn"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</body>
+</html>

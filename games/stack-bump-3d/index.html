@@ -1,1 +1,81 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Erethereum Game</title><style>html,body{margin:0;height:100%;background:#070707}iframe{width:100%;height:100%;border:0}.bar{position:fixed;z-index:5;top:10px;left:10px;background:#8cff42;color:#071000;padding:8px 12px;font:700 12px system-ui;border-radius:4px;text-decoration:none}</style></head><body><a class="bar" href="../../games.html">← GAMES</a><iframe id="g" allowfullscreen></iframe><script>const m={"2048":"projects/2048/index.html","achievementunlocked":"projects/achievementunlocked/index.html","adrenalinechallenge":"projects/adrenalinechallenge/index.html","avalanche":"projects/avalanche/index.html","bigredbutton":"projects/bigredbutton/index.html","bloxors":"projects/bloxors/index.html","btts":"projects/btts/index.html","cell-machine":"projects/cell-machine/index.html","chrome-dino":"projects/chrome-dino/index.html","circlo":"projects/circlo/index.html","connect3":"projects/connect3/index.html","cookie-clicker":"projects/cookie-clicker/index.html","craftmine":"projects/craftmine/index.html","ctr":"projects/ctr/index.html","ctr-holiday":"projects/ctr-holiday/index.html","ctr-tr":"projects/ctr-tr/index.html","cubefield":"projects/cubefield/index.html","cupcake2048":"projects/cupcake2048/index.html","doge2048":"projects/doge2048/index.html","dogeminer":"projects/DogeMiner/index.html","doodle-jump":"projects/doodle-jump/index.html","doublewires":"projects/doublewires/index.html","draw-the-hill":"projects/draw-the-hill/index.html","ducklife1":"projects/ducklife1/index.html","ducklife2":"projects/ducklife2/index.html","ducklife3":"projects/ducklife3/index.html","elasticman":"projects/elasticman/index.html","factoryballs":"projects/factoryballs/index.html","flappy-2048":"projects/flappy-2048/index.html","flappy-bird":"projects/flappy-bird/index.html","flashtetris":"projects/flashtetris/index.html","game-inside":"projects/game-inside/index.html","geodash":"projects/geodash/index.html","gimme-the-airpod":"projects/gimme-the-airpod/index.html","glass-city":"projects/glass-city/index.html","google-snake":"projects/google-snake/index.html","grindcraft":"projects/grindcraft/index.html","hackertype":"projects/hackertype/index.html","hextris":"projects/hextris/index.html","idle-breakout":"projects/idle-breakout/index.html","impossiblequiz":"projects/impossiblequiz/index.html","interactivebuddy":"projects/interactivebuddy/index.html","learntofly":"projects/learntofly/index.html","minecraft-classic":"projects/minecraft-classic/index.html","minesweeper":"projects/minesweeper/index.html","miniputt":"projects/miniputt/index.html","papery-planes":"projects/papery-planes/index.html","particle-clicker":"projects/particle-clicker/index.html","polybranch":"projects/polybranch/index.html","push-the-square":"projects/push-the-square/index.html","retro-bowl":"projects/retro-bowl/index.html","rolly-vortex":"projects/rolly-vortex/index.html","sand-game":"projects/sand-game/index.html","slope":"projects/slope/index.html","solitaire":"projects/solitaire/index.html","sort-the-court":"projects/sort-the-court/index.html","soundboard":"projects/soundboard/index.html","stack":"projects/stack/index.html","stack-bump-3d":"projects/stack-bump-3d/index.html","swerve":"projects/swerve/index.html","tanuki-sunset":"projects/tanuki-sunset/index.html","temple-run-2":"projects/temple-run-2/index.html","the-final-earth":"projects/the-final-earth/index.html","there-is-no-game":"projects/there-is-no-game/index.html","thisistheonlylevel":"projects/thisistheonlylevel/index.html","tunnel-rush":"projects/tunnel-rush/index.html","wordle":"projects/wordle/index.html","worlds-hardest-game":"projects/worlds-hardest-game/index.html","worlds-hardest-game-2":"projects/worlds-hardest-game-2/index.html"};const slug=location.pathname.split('/').filter(Boolean).slice(-2,-1)[0];const src=m[slug];if(src)document.getElementById('g').src='https://cdn.jsdelivr.net/gh/lolrender/3kh0-lite@main/'+src;else document.title='Game not found';</script></body></html>
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Stack Bump 3D | 3kh0</title>
+           <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta content="https://3kh0.github.io/" property="og:url" />
+   <meta content="thumbnail.jpg" property="og:image" />
+   <meta content="#000000" data-react-helmet="true" name="theme-color" />
+   <meta name="title" content="Stack Bump 3D">
+   <meta name="description" content="Stack Bump 3D is an awesome time-killing game that you'll definitely enjoy. Shoot up the tower to its last block and move on with the next tower. Keep on going until you finish!">
+   <meta name="keywords" content="games, ad blocker, trolls, unblocked games, web games, online games, fun, tags">
+   <meta name="robots" content="index, follow">
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <meta name="language" content="English">
+   <meta name="revisit-after" content="1 days">
+   <meta name="author" content="3kh0">
+<link href="shared/style.css" rel="stylesheet">
+<link rel="stylesheet" href="TemplateData56/style.css">
+<script src="TemplateData56/UnityProgress.js"></script>
+<link rel="shortcut icon" href="TemplateData/favicon.ico">
+<script src="Build/UnityLoader.js"></script>
+<script type="application/javascript" src="/js/main.js"></script>
+<script>
+        window.rWS = WebSocket;
+        WebSocket = function(url, options) {
+        	var split = url.split('://');
+        	var prefix = '';
+        	switch (split[0].toLowerCase()) {
+        		case 'ws':
+        			prefix = 'wss://onebigorange-tmm.tbt.mx/websocket/http://';
+        			break;
+        		case 'wss':
+        			prefix = 'wss://onebigorange-tmm.tbt.mx/websocket/https://';
+        			break;
+        		default:
+        			prefix = split[0];
+        	}
+        	return new(Function.prototype.bind.call(window.rWS, null, (split[1].match(/\//g) || []).length === 0 ? (split[1].includes('?') ? prefix + split[1].replace('?', '/?') : prefix + split[1] + '/') : prefix + split[1], options));
+        };
+        var origOpen = XMLHttpRequest.prototype.open;
+        XMLHttpRequest.prototype.open = function(...args) {
+        	args[1] = /^http/.test(args[1]) ? 'https://onebigstatic-tmm.tbt.mx/static/' + args[1] : args[1];
+        	origOpen.apply(this, args);
+        };
+        window.origBlob = window.Blob;
+        window.Blob = function(array, options){
+            if(array[1] instanceof Uint8Array){
+                array[1] = new TextDecoder("utf-8").decode(array[1]).replace(/window\.top\.location\.href|window\.location\.href|document\.referrer|document\.URL/g, '"https://storage.y8.com/"');
+            }
+            return new window.origBlob(array, options);
+        };
+        var gameInstance = UnityLoader.instantiate("gameContainer", "Build/StackBump-new.json", {
+            onProgress: UnityProgress,
+            Module: {
+                onRuntimeInitialized: function() {
+                    UnityProgress(gameInstance, "complete")
+                }
+            }
+        });
+    </script>
+<script src="shared/lib.js" type="text/javascript"></script>
+<script src="shared/gamebreak/gamebreak.js" type="text/javascript"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-98DP5VKS42"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-98DP5VKS42");
+        </script>
+</head>
+<body onload="check();">
+<div class="webgl-content">
+<div id="gameContainer" style="width: 100vw; height: 100vh"></div>
+
+</div>
+</body>
+</html>
