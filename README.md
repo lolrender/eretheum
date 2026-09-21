@@ -40,8 +40,14 @@ The game list is intentionally curated rather than copying every game from the s
 - `play.html` — game player
 - `stats.html` — local stats and achievements
 - `settings.html` — themes and site settings
+- `apps.html` — web apps and the ERETHEUM web viewer
+- `proxy/worker.js` — optional serverless web viewer backend
 - `system/` — shared site data and scripts
 - `games/` — individual games
+
+## Web viewer
+
+The Apps page provides shortcuts and a URL/search bar. For in-site browsing, deploy `proxy/worker.js` as a serverless HTTP worker and save its public endpoint in the browser as `eretheum-proxy-endpoint`. The viewer only accepts HTTP(S) GET requests, blocks common local/private hosts, and rewrites common page links back through the viewer. Some websites may still refuse proxying, authentication, media, or embedded features.
 
 ## Running it
 
