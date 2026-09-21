@@ -53,9 +53,9 @@ function openTarget(raw){
  const target=targetFor(raw);
  localStorage.setItem(viewerKey,target);
  if(configured){
-   location.href=configured.replace(/\/$/,"")+"/?url="+encodeURIComponent(target);
+   location.href="viewer.html?url="+encodeURIComponent(target);
  }else{
-   window.open(target,"_blank","noopener,noreferrer");
+   location.href="viewer.html?url="+encodeURIComponent(target);
  }
 }
 document.getElementById("go").onsubmit=e=>{e.preventDefault();openTarget(document.getElementById("url").value)};
