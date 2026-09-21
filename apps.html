@@ -60,7 +60,7 @@ function openTarget(raw){
 }
 document.getElementById("go").onsubmit=e=>{e.preventDefault();openTarget(document.getElementById("url").value)};
 document.getElementById("apps").innerHTML=apps.map(a=>'<a class="app" href="#" data-url="'+a[3]+'"><div class="icon">'+a[0]+'</div><div class="name">'+a[1]+'</div><div class="desc">'+a[2]+'</div></a>').join("");
-document.querySelectorAll(".app").forEach(a=>a.onclick=e=>{e.preventDefault();openTarget(a.dataset.url)});
+document.querySelectorAll(".app").forEach(a=>a.onclick=e=>{e.preventDefault();if(a.dataset.url==="https://www.google.com/"){window.open("https://www.google.com/","_blank","noopener,noreferrer");return}openTarget(a.dataset.url)});
 </script>
 </body>
 </html>
